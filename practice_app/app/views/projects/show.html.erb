@@ -1,0 +1,76 @@
+<p>
+  <strong>Project name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.desc %>
+</p>
+
+
+
+<h2>Tasks</h2>
+<% @project.tasks.each do |task| %>
+  <p>
+    <strong>Task Title:</strong><%= task.title %>
+  </p>
+
+  <p>
+    <strong>Details:</strong><%= task.body %>
+  </p>
+
+<% end %> 
+
+<h2>Add a task:</h2>
+<%= form_for ([@project, @project.tasks.build]) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+
+
+<h2>Comments</h2>
+<% @project.comments.each do |comment| %>
+
+  <p>
+    <strong>Name:</strong><%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong><%= comment.body %>
+  </p>
+
+<% end %>
+
+
+<h2>Add a comment:</h2>
+<%= form_for ([@project, @project.comments.build]) do |f| %>
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter %>
+  </p>
+
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %> 
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Back to list', projects_path %> 
